@@ -1,21 +1,13 @@
 
-OBJS = main.o  
+OBJS = monocypher.o main.o  
 # Cpp:  C = g++ 
 # C :	CC = gcc 
 ##CC = g++ 
 CC = gcc -std=c++11 
 CFLAGS = -Wall -O -g  
-    
-#helloworld : $(OBJS)  
-#	$(CC) $(OBJS) -o helloworld  
+
 server : $(OBJS)  
-	$(CC) $(OBJS) -o server  
-    
-#file1.o : file1.c file2.h  
-#    $(CC) $(CFLAGS) -c file1.c -o file1.o  
-    
-#file2.o : file2.c file2.h  
-#    $(CC) $(CFLAGS) -c file2.c -o file2.o  
+	$(CC) $(OBJS)  -o server     
     
 clean:  
 	rm -rf *.o server  
