@@ -69,10 +69,13 @@ int main(int argc, char *argv[])
             printf("recv failed");
             break;
         }
-        printf("Client reply : %s\n",client_message);
+        printf("Client reply(size:%lu len:%lu) : %s\n", 
+                    sizeof(client_message), strlen(client_message),client_message);
 
         // Attent msg "hello aticleworld.com"
-        if(strcmp(pMessage,client_message)==0)
+        // Ici, on utilise strlen, car il prend la taille du message et s'arrête au \0
+        // le sizeof, prend la taille max du type
+        if(strncmp(pMessage,client_message, strlen(pMessage))==0)
         {
             strcpy(message,"Hi there !");
         }
@@ -80,6 +83,7 @@ int main(int argc, char *argv[])
         {
             strcpy(message,"Invalid Message !");
         }
+
         // Send some data
         if( send(sock, message, strlen(message), 0) < 0)
         {
